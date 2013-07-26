@@ -33,10 +33,16 @@ for num in data[0].split():
         if(lista.find(match) == -1):
             lista += match + "\n"
         # Cada 50 mails, escribimos en el archivo y seguimos tranquilitos
-        if(mails % 50 == 0):
+        # <MoP> Supongo que esto lo haces para ir guardando eventualmente la informacion
+        if(mails % 50 == 0): # esto funciona cuando tengas 39 mails por ejemplo?
+            # <MoP> cuando abres el archivo, truncas el contenido y escribes de nuevo todo
+            # <MoP> sabes lo que implica algo asi? imagina un archivo gigante de varios megas, matas la memoria del server
+            # <MoP> y no se diga si es una app web
+            # <MoP> podrias usar el "a" en lugar de "w" para solo ir agregando la informacion
             f = open("errores.txt", "w")
+            # <MoP> si lista no se elimina, vas guardando toda la informacion en memoria
             f.write(lista)
             f.close()
             print str(mails) + " procesados [" + str(num) + "]"
-
-
+# <MoP> sugiero que al final del ciclo, vuelvas a agregar la informacion de la lista
+# <MoP> creo que cuando tu condicion de arriba no se cumpla, no vas a estar guardando la informacion
